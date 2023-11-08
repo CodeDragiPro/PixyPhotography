@@ -3,11 +3,14 @@ import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import NewPortfolio from './NewPortfolio';
 import Dashboard from './Dasboard';
 import { MdDashboard, MdHome, MdAddAPhoto, MdFormatAlignJustify, MdLogout } from 'react-icons/md';
+import ListPortfolio from './ListPortfolio';
+import arrow from '../../assets/control.png';
+import Logo from '../../assets/logo.png';
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const pathsToExclude = ["/", "/login"];
+  const pathsToExclude = ["/", "/login", "/portfolio"];
 
   const handleLogout = () => {
     localStorage.clear();
@@ -35,14 +38,14 @@ const Sidebar = () => {
         } bg-pixygreen h-screen p-5  pt-8 relative duration-300`}
       >
         <img
-          src="./src/assets/control.png"
+          src={arrow}
           className={`absolute cursor-pointer -right-3 top-9 w-7 border-pixygreen
            border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
         <div className="flex gap-x-4 items-center">
           <img
-            src="./src/assets/logo.png"
+            src={Logo}
             className={`cursor-pointer duration-500 ${
               open && "rotate-[360deg]"
             }`}
@@ -78,6 +81,7 @@ const Sidebar = () => {
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/new" element={<NewPortfolio />} />
+          <Route path="/dashboard/list" element={<ListPortfolio />} />
         </Routes>
       </div>
     </div>

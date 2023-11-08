@@ -34,7 +34,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li className="p-4 hover:text-pixycyan">
-          <a href="#expertise" onClick={closeNav}>
+          <a href="/portfolio" onClick={closeNav}>
             Portfolio
           </a>
         </li>
@@ -54,7 +54,7 @@ const Navbar = () => {
           </a>
         </li>
         <li className="p-4 hover:text-pixycyan">
-          <a href="#skills" onClick={closeNav}>
+          <a href="/login" onClick={closeNav}>
             login
           </a>
         </li>

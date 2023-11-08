@@ -65,7 +65,9 @@ const NewPortfolio = () => {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 5000, 
         });
-       
+       setTimeout(() => {
+      window.location.href = "/dashboard/list";
+    }, 5000);
       
       })
       

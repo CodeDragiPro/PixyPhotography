@@ -17,7 +17,8 @@ export default {
         Satisfy: ['Satisfy'],
         Montserrat: ['Montserrat', 'sans'],
         Hachi: ['Hachi Maru Pop'],
-        Poppins: ['Poppins']
+        Poppins: ['Poppins'],
+        Indie: ['Indie Flower'],
       },
     },
   },

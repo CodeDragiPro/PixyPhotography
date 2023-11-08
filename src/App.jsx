@@ -2,8 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import Login from "./pages/Login";
-import Dashboard from "./pages/admin/Dasboard";
-// import NewPortfolio from "./pages/admin/NewPortfolio";
 import Navbar from "./components/NavBar";
 import Sidebar from "./pages/admin/Sidebar";
 

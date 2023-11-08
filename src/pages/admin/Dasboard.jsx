@@ -57,8 +57,8 @@ const Dashboard = () => {
 
         <div className="text-center">
           <p>Tu as actuelement :</p>
-          <p className="text-3xl font-bold text-codedragi-blue">{portfolioCount}</p>
-          <p className="text-gray-600">Portfolios</p>
+          <p className="text-3xl font-bold text-pixygreen">{portfolioCount}</p>
+          <p className="text-gray-600">Photos</p>
         </div>
       </div>
     </div>
