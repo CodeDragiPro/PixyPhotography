@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import Hero from '../components/Hero';
+import LatestPortfolio from '../components/LatestPortfolio';
 
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <div className="pt-20">
+ 
+      <Hero/>
+      <LatestPortfolio/>
+    </div>
+  );
+};
 
-export default Home
+export default Home;
