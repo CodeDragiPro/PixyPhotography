@@ -37,7 +37,7 @@ const LatestPortfolio = () => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="py-8">
       <div className="flex justify-between items-center">
         <TitleSection paragraphe="P" title="hotos Récente"/>
         <div className="flex justify-between items-center text-pixygreen md:text-xl text-lg animate-bounce">

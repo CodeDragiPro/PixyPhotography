@@ -39,10 +39,10 @@ const Price = () => {
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-pixypink py-8">
       <TitleSection paragraphe="T" title="arifs" />
       <div className="max-w-3xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  text-center">
           {priceItems.map((item, index) => (
             <PriceCard key={index} {...item} />
           ))}
