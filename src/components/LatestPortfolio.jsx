@@ -37,9 +37,9 @@ const LatestPortfolio = () => {
   }, []);
 
   return (
-    <div className="py-8">
+    <div className="py-16">
       <div className="flex justify-between items-center">
-        <TitleSection paragraphe="P" title="hotos Récente"/>
+      <TitleSection paragraphe="P" title="hotos récente" paragrapheColor="text-pixypink"/>
         <div className="flex justify-between items-center text-pixygreen md:text-xl text-lg animate-bounce">
           <Link to="/portfolio" className="flex items-center mx-2">
             Voir tous les projets
@@ -53,7 +53,7 @@ const LatestPortfolio = () => {
       ) : (
         <div className="flex flex-wrap justify-center gap-4 mt-4">
           {portfolios.slice(0, 5).map((item, index) => (
-            <div key={item.id} className="flex justify-center">
+            <div key={item.id} className="flex justify-center mt-4">
               <Card
                 id={item.id}
                 images={item.images}

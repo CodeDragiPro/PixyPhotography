@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-const TitleSection = ({paragraphe, title}) => {
+const TitleSection = ({ paragraphe, title, paragrapheColor }) => {
   return (
     <div className='px-4'>
-    <h1 className="md:text-4xl text-2xl text-pixygreen">
-       <span className="text-pixypink text-5xl opacity-50">{paragraphe}</span>
-       {title}
-    </h1>
-</div>
-  )
+      <h1 className="md:text-4xl text-2xl text-pixygreen">
+        <span className={`${paragrapheColor} text-5xl opacity-50`}>{paragraphe}</span>
+        {title}
+      </h1>
+    </div>
+  );
 }
 
-export default TitleSection
+export default TitleSection;

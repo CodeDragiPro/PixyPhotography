@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Navbar from "./components/NavBar";
 import Sidebar from "./pages/admin/Sidebar";
 import { toast, ToastContainer } from "react-toastify";
+import Footer from "./components/Footer";
 function App() {
   return (
     <div className=" font-Poppins">
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
         <ToastContainer/>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

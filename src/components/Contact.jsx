@@ -27,10 +27,11 @@ const Contact = () => {
     });
   };
 
-  return (
-    <div className="bg-pixypink py-16">
-    <TitleSection paragraphe="C" title="ontact"/>
-      <div className="max-w-2xl mx-auto bg-pixygreen p-8 rounded-lg shadow-md">
+  return ( 
+    <div className="bg-pixypink py-16" id='contact'>
+    <TitleSection paragraphe="C" title="ontact" paragrapheColor="text-pixybeige"/>
+    <div className='p-4'>
+      <div className="max-w-2xl mx-auto bg-pixygreen p-8 rounded-lg shadow-md mt-4">
         <p className='text-center italic text-pixycyan'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae pariatur, maxime nulla dolores dignissimos similique voluptatum culpa iusto beatae eaque.</p>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -76,6 +77,7 @@ const Contact = () => {
             Envoyer
           </button>
         </form>
+      </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import TitleSection from "./ui/TitleSection";
+import TitleSection from '../components/ui/TitleSection'
 import PriceCard from "../components/PriceCard";
 import Mariage from "../assets/mariage.jpeg"; 
 import Evenements from '../assets/evenement.jpeg';
@@ -39,8 +39,8 @@ const Price = () => {
   ];
 
   return (
-    <div className="bg-pixypink py-8">
-      <TitleSection paragraphe="T" title="arifs" />
+    <div className="bg-pixypink py-8" id="price">
+     <TitleSection paragraphe="T" title="arifs" paragrapheColor="text-pixybeige"/>
       <div className="max-w-3xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  text-center">
           {priceItems.map((item, index) => (

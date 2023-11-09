@@ -39,17 +39,17 @@ const Navbar = () => {
           </a>
         </li>
         <li className="p-4 hover:text-pixycyan">
-          <a href="#projets" onClick={closeNav}>
+          <a href="#price" onClick={closeNav}>
             Tarifs
           </a>
         </li>
         <li className="p-4 hover:text-pixycyan">
-          <a href="#contact" onClick={closeNav}>
+          <a href="#about" onClick={closeNav}>
             A Propos
           </a>
         </li>
         <li className="p-4 hover:text-pixycyan">
-          <a href="#skills" onClick={closeNav}>
+          <a href="#contact" onClick={closeNav}>
             Contact
           </a>
         </li>
@@ -76,27 +76,27 @@ const Navbar = () => {
           </Link>
         </li>
         <li className="p-4 border-b border-pixybeige hover:text-pixycyan">
-          <a href="#expertise" onClick={closeNav}>
+          <a href="/portfolio" onClick={closeNav}>
             Portfolio
           </a>
         </li>
         <li className="p-4 border-b border-pixybeige hover:text-pixycyan">
-          <a href="#projets" onClick={closeNav}>
+          <a href="#price" onClick={closeNav}>
             Tarifs
           </a>
         </li>
         <li className="p-4 border-b border-pixybeige hover:text-pixycyan">
-          <a href="#contact" onClick={closeNav}>
+          <a href="#about" onClick={closeNav}>
             A Propos
           </a>
         </li>
         <li className="p-4 border-b border-pixybeige hover:text-pixycyan">
-          <a href="#skills" onClick={closeNav}>
+          <a href="#contact" onClick={closeNav}>
             Contact
           </a>
         </li>
         <li className="p-4 border-b border-pixybeige hover:text-pixycyan">
-          <a href="#skills" onClick={closeNav}>
+          <a href="/login" onClick={closeNav}>
             login
           </a>
         </li>

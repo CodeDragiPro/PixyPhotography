@@ -4,8 +4,8 @@ import TitleSection from './ui/TitleSection';
 
 const About = () => {
   return (
-    <div className=" py-16">
-        <TitleSection paragraphe="A" title=" Propos"/>
+    <div className="py-16" id='about'>
+        <TitleSection paragraphe="A" title=" propos" paragrapheColor="text-pixypink"/>
       <div className="max-w-4xl mx-auto text-center">
         <div className="flex flex-col md:flex-row justify-center items-center">
           <div className="md:w-1/3 mb-4">
