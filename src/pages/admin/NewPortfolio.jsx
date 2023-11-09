@@ -4,30 +4,42 @@ import { db, storage } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore/lite";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const NewPortfolio = () => {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const imageRef = useRef();
-  const categories = ["Javascript", "React Js", "Tailwind Css"];
+  const categories = ["Mariage", "Evenements", "Studio", "Nature"];
   const categoryRefs = categories.map(() => useRef());
   const [selectedDate, setSelectedDate] = useState(null);
 
- 
-  const submitPortfolio = (e) => {
+  const savePortfolio = async (portfolio) => {
+    try {
+      await addDoc(collection(db, "portfolio"), portfolio);
+      window.location.reload(false);
+    } catch (error) {
+      console.error("Failed to add portfolio", error);
+
+    }
+  };
+
+  const submitPortfolio = async (e) => {
     e.preventDefault();
-    toast.info("Envoi des données en cours", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000, 
-    });
+    if (!titleRef.current.value || !descriptionRef.current.value || !imageRef.current.files || !selectedDate) {
+      toast.error("Veuillez remplir tous les champs obligatoires", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
+      return; 
+    }
+  
     const title = titleRef.current.value;
     const description = descriptionRef.current.value;
     const images = imageRef.current.files;
     const date = selectedDate;
-
-
+  
     const selectedCategories = categoryRefs
       .map((ref, index) => ({
         ref: ref,
@@ -35,69 +47,52 @@ const NewPortfolio = () => {
       }))
       .filter((category) => category.ref.current.checked)
       .map((category) => category.category);
-
   
-
     const imageUploadPromises = [];
     for (const image of images) {
       const storageRef = ref(storage, `portfolio/${image.name}`);
       const uploadPromise = uploadBytes(storageRef, image);
       imageUploadPromises.push(uploadPromise);
     }
-
-    Promise.all(imageUploadPromises)
-      .then((snapshots) => {
-        const downloadUrls = snapshots.map((snapshot) =>
-          getDownloadURL(snapshot.ref)
-        );
-        return Promise.all(downloadUrls);
-      })
-      .then((downloadUrls) => {
-        const imageUrls = downloadUrls.map((url) => url);
-        savePortfolio({
-          title,
-          description,
-          images: imageUrls,
-          date,
-          selectedCategories,
-        });
-        toast.success("Données envoyées avec succès", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 5000, 
-        });
-       setTimeout(() => {
-      window.location.href = "/dashboard/list";
-    }, 5000);
-      
-      })
-      
-      .catch((error) => {
-        console.error(error);
-        savePortfolio({
-          title,
-          description,
-          link,
-          images: [],
-          date,
-          selectedCategories,
-        });
-        toast.error("Une erreur s'est produite lors de l'envoi", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000, 
-        });
-      });
-  };
-
-  const savePortfolio = async (portfolio) => {
-    console.log(portfolio);
     try {
-      await addDoc(collection(db, "portfolio"), portfolio);
-      window.location.reload(false);
+      const snapshots = await Promise.all(imageUploadPromises);
+      const downloadUrls = await Promise.all(
+        snapshots.map((snapshot) => getDownloadURL(snapshot.ref))
+      );
+    
+      const imageUrls = downloadUrls.map((url) => url);
+      await savePortfolio({
+        title,
+        description,
+        images: imageUrls,
+        date,
+        selectedCategories,
+      });
+      toast.success("Envoi des données en cours", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: false,
+        closeButton: true,
+        onClose: () => {
+          console.log("Fermeture du toast succès");
+          window.location.href = "/dashboard";
+        },
+      });
     } catch (error) {
-      alert("Failed to add portfolio");
+      console.error(error);
+      await savePortfolio({
+        title,
+        description,
+        images: [],
+        date,
+        selectedCategories,
+      });
+      toast.error("Une erreur s'est produite lors de l'envoi", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      });
     }
   };
-
+  
   return (
     <div className="max-w-screen-md mx-auto py-20 p-4">
       <h1 className="text-center font-bold py-2 text-2xl text-pixygreen">Ajouter un Portfolio</h1>
@@ -134,7 +129,6 @@ const NewPortfolio = () => {
             id="images"
             className="w-full p-2 border-2  rounded  focus:outline-none bg-pixycyan text-pixygreen"
             ref={imageRef}
-            multiple
           />
         </div>
         <div>
@@ -168,7 +162,6 @@ const NewPortfolio = () => {
         >
           Envoyer
         </button>
-        <ToastContainer />
       </form>
     </div>
   );
