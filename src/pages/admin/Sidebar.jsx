@@ -10,16 +10,19 @@ import Logo from '../../assets/logo.png';
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const pathsToExclude = ["/", "/login", "/portfolio" , "/*"];
+  const pathsToRenderSidebar = ["/dashboard", "/dashboard/new", "/dashboard/list"];
 
+  const shouldRenderSidebar = pathsToRenderSidebar.includes(location.pathname);
+
+  if (!shouldRenderSidebar) {
+    return null;
+  }
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = '/login';
   };
 
-  if (pathsToExclude.includes(location.pathname)) {
-    return null;
-  }
+  
 
   const Menus = [
     { title: "Acceuil", icon: <MdHome size={25} className='text-pixcyan hover:text-pixypink' />, to:"/" },

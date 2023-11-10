@@ -4,7 +4,7 @@ import Portfolio from "./pages/Portfolio";
 import Login from "./pages/Login";
 import Navbar from "./components/NavBar";
 import Sidebar from "./pages/admin/Sidebar";
-import { toast, ToastContainer } from "react-toastify";
+import {ToastContainer } from "react-toastify";
 import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
 
