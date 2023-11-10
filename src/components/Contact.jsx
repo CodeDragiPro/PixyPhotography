@@ -1,31 +1,34 @@
-import React, { useState } from 'react';
-import TitleSection from './ui/TitleSection';
+import React, { useEffect, useRef } from "react";
+import emailjs from '@emailjs/browser';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import TitleSection from "./ui/TitleSection";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+  const serviceID = import.meta.env.VITE_EMAIL_SERVICE_ID;
+  const templateID = import.meta.env.VITE_EMAIL_TEMPLATE_ID;
+  const userID = import.meta.env.VITE_EMAIL_USER_ID;
+  const form = useRef();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    // Ajoutez votre logique pour traiter le formulaire ici
-
-    // Réinitialise le formulaire après la soumission
-    setFormData({
-      name: '',
-      email: '',
-      message: '',
-    });
+  
+    emailjs.sendForm(serviceID, templateID, form.current, userID).then(
+      function (response) {
+        console.log("E-mail envoyé", response);
+        toast.success('E-mail envoyé avec succès');
+      },
+      function (error) {
+        console.error("Erreur lors de l'envoi de l'e-mail", error);
+        toast.error('Erreur lors de l\'envoi de l\'e-mail');
+      }
+    );
   };
+  
+
+  useEffect(() => {
+    emailjs.init(userID);
+  }, []);
 
   return ( 
     <div className="bg-pixypink py-16" id='contact'>
@@ -33,15 +36,13 @@ const Contact = () => {
     <div className='p-4'>
       <div className="max-w-2xl mx-auto bg-pixygreen p-8 rounded-lg shadow-md mt-4">
         <p className='text-center italic text-pixycyan'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae pariatur, maxime nulla dolores dignissimos similique voluptatum culpa iusto beatae eaque.</p>
-        <form onSubmit={handleSubmit}>
+        <form ref={form} id="contact-form" onSubmit={sendEmail}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-pixypink text-sm font-bold mb-2">Nom</label>
+            <label htmlFor="user_name" className="block text-pixypink text-sm font-bold mb-2">Nom</label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+              id="user_name"
+              name="from_name"
               className="w-full p-2 rounded bg-pixycyan focus:outline-none text-pixygreen"
               required
             />
@@ -51,9 +52,7 @@ const Contact = () => {
             <input
               type="email"
               id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+              name="user_email"
               className="w-full p-2 rounded bg-pixycyan focus:outline-none text-pixygreen"
               required
             />
@@ -63,9 +62,6 @@ const Contact = () => {
             <textarea
               id="message"
               name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows="4"
               className="w-full p-2 rounded bg-pixycyan focus:outline-none text-pixygreen"
               required
             ></textarea>

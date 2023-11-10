@@ -6,6 +6,8 @@ import Navbar from "./components/NavBar";
 import Sidebar from "./pages/admin/Sidebar";
 import { toast, ToastContainer } from "react-toastify";
 import Footer from "./components/Footer";
+import NotFoundPage from "./pages/NotFoundPage";
+
 function App() {
   return (
     <div className=" font-Poppins">
@@ -15,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="*" element={<NotFoundPage/>}/>
           <Route path="/login" element={<Login />} />
         </Routes>
         <ToastContainer/>

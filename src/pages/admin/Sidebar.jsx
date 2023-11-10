@@ -10,7 +10,7 @@ import Logo from '../../assets/logo.png';
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const pathsToExclude = ["/", "/login", "/portfolio"];
+  const pathsToExclude = ["/", "/login", "/portfolio" , "/*"];
 
   const handleLogout = () => {
     localStorage.clear();

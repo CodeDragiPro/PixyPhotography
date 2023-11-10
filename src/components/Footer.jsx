@@ -2,7 +2,7 @@ import React from 'react';
 import { AiFillFacebook, AiFillInstagram } from 'react-icons/ai';
 
 import LogoCodeDragi from '../assets/logoCodeDragi.png';
-import Pixy from '../assets/pixy.jpeg';
+import Pixy from '../assets/pixy.jpg';
 
 const Footer = () => {
   return (

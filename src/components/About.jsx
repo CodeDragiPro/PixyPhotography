@@ -1,5 +1,5 @@
 import React from 'react';
-import Pixy from '../assets/pixy.jpeg';
+import Pixy from '../assets/pixy.jpg';
 import TitleSection from './ui/TitleSection';
 
 const About = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs, query, orderBy, where } from 'firebase/firestore/lite';
+import { collection, getDocs, query, orderBy, where, startAt, endAt } from 'firebase/firestore/lite';
 import { db } from '../config/firebase';
 import TitleSection from '../components/ui/TitleSection';
 import PortfolioCard from '../components/Card';
@@ -12,49 +12,51 @@ const Portfolio = () => {
     label: 'Du plus récent au plus ancien',
   });
   const [selectedCategory, setSelectedCategory] = useState('tout');
+  const [searchTerm, setSearchTerm] = useState('');
   const [categoryOptions, setCategoryOptions] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let queryRef = collection(db, 'portfolio');
+   const fetchData = async () => {
+  let conditions = [];
 
-        // Si une option de tri est sélectionnée, appliquez le tri
-        if (selectedSortOption) {
-          const { value } = selectedSortOption;
-          queryRef = query(queryRef, orderBy('date', value));
-        }
+  try {
+    let queryRef = collection(db, 'portfolio');
 
-        const querySnapshot = await getDocs(queryRef);
+    if (selectedCategory !== 'tout') {
+      conditions.push(['selectedCategories', 'array-contains', selectedCategory]);
+    }
 
-        const portfolioData = [];
-        querySnapshot.forEach((doc) => {
-          const portfolio = {
-            id: doc.id,
-            ...doc.data(),
-          };
-          portfolioData.push(portfolio);
-        });
+    if (selectedSortOption) {
+      const { value } = selectedSortOption;
+      queryRef = query(queryRef, orderBy('date', value));
+    }
 
-        setPortfolios(portfolioData);
+    const querySnapshot = await getDocs(queryRef);
 
-        // Récupère les catégories uniques à partir des portfolios actuels
-        const uniqueCategories = Array.from(new Set(portfolioData.flatMap((item) => item.selectedCategories)));
+    const portfolioData = [];
+    querySnapshot.forEach((doc) => {
+      const portfolio = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      portfolioData.push(portfolio);
+    });
+    setPortfolios(portfolioData);
 
-        // Crée une liste d'options pour le menu déroulant des catégories
-        const options = [
-          { value: 'tout', label: 'Tout' },
-          ...uniqueCategories.map((category) => ({ value: category, label: category })),
-        ];
+    const uniqueCategories = Array.from(new Set(portfolioData.flatMap((item) => item.selectedCategories)));
+    const options = [
+      { value: 'tout', label: 'Tout' },
+      ...uniqueCategories.map((category) => ({ value: category, label: category })),
+    ];
 
-        setCategoryOptions(options);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des données de Firebase:', error);
-      }
-    };
-
+    setCategoryOptions(options);
+  } catch (error) {
+ }
+};
+  
     fetchData();
-  }, [selectedSortOption]);
+  }, [selectedSortOption, selectedCategory, searchTerm]);
+  
 
   const sortOptions = [
     { value: 'asc', label: 'Du plus ancien au plus récent' },
@@ -90,19 +92,28 @@ const Portfolio = () => {
           className="w-48 ml-2"
         />
       </div>
+      <input
+        type="text"
+        placeholder="Rechercher..."
+        className="md:w-1/5 w-full p-2 rounded focus:outline-none mb-4 bg-pixycyan text-pixygreen"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-        {portfolios
-          .filter(
-            (item) =>
-              selectedCategory === 'tout' || item.selectedCategories.includes(selectedCategory)
-          )
+     
+      {portfolios
+          .filter((item) => {
+            const categoryCondition =
+              selectedCategory === 'tout' || item.selectedCategories.includes(selectedCategory);
+
+            const searchCondition =
+              searchTerm === '' ||
+              item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
+            return categoryCondition && searchCondition;
+          })
           .map((item) => (
-            <PortfolioCard
-              key={item.id}
-              images={item.images}
-              title={item.title}
-              type={item.selectedTypes}
-            />
+            <PortfolioCard key={item.id} images={item.images} title={item.title} type={item.selectedTypes} />
           ))}
       </div>
     </div>

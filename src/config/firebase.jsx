@@ -6,7 +6,7 @@ import { getFirestore } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyDAATVXqkI1okNh9TAH1ihqCvjGJ6MJprU",
+    apiKey: import.meta.env.VITE_API_KEY,
     authDomain: "pixie-photography.firebaseapp.com",
     projectId: "pixie-photography",
     storageBucket: "pixie-photography.appspot.com",
