@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 const PriceCard = ({ title, image, description, listItems, price }) => {
   return (
-    <div className="bg-white p-4 rounded-lg shadow-lg border m-4 flex flex-col justify-between">
+    <div className="bg-white p-4 rounded-lg shadow-lg  m-4 flex flex-col justify-between">
       <div>
-        <h2 className="text-xl font-bold mb-4 text-pixygreen">{title}</h2>
+        <h2 className="text-xl font-bold mb-4 text-primary">{title}</h2>
         <img src={image} alt={title} className="w-full h-50 object-cover mb-4" />
-        <p className="text-pixypink italic">{description}</p>
+        <p className="text-secondary italic">{description}</p>
       </div>
       <hr className="my-2 border-t border-gray-300" />
-      <ul className="text-pixygreen">
+      <ul className="text-tertiary">
         {listItems.map((item, index) => (
           <li key={index} className="mb-2">
             {item}
@@ -18,7 +18,7 @@ const PriceCard = ({ title, image, description, listItems, price }) => {
         ))}
       </ul>
       <hr className="my-2 border-t border-gray-300" />
-      <p className="text-pixycyan font-bold">À partir de {price}</p>
+      <p className="text-secondary font-bold">À partir de {price}</p>
     </div>
   );
 };

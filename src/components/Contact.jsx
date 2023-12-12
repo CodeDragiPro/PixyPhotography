@@ -31,44 +31,43 @@ const Contact = () => {
   }, []);
 
   return ( 
-    <div className="bg-pixypink py-16" id='contact'>
-    <TitleSection paragraphe="C" title="ontact" paragrapheColor="text-pixybeige"/>
-    <div className='p-4'>
-      <div className="max-w-2xl mx-auto bg-pixygreen p-8 rounded-lg shadow-md mt-4">
-        <p className='text-center italic text-pixycyan'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae pariatur, maxime nulla dolores dignissimos similique voluptatum culpa iusto beatae eaque.</p>
+    <div className="" id='contact'>
+    <div className='pb-8 p-4'>
+      <div className="max-w-4xl mx-auto bg-secondary p-8 rounded-lg shadow-md mt-4 ">
+        <p className='text-center italic text-white'>Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
         <form ref={form} id="contact-form" onSubmit={sendEmail}>
           <div className="mb-4">
-            <label htmlFor="user_name" className="block text-pixypink text-sm font-bold mb-2">Nom</label>
+            <label htmlFor="user_name" className="block text-primary text-sm font-bold mb-2">Nom</label>
             <input
               type="text"
               id="user_name"
               name="from_name"
-              className="w-full p-2 rounded bg-pixycyan focus:outline-none text-pixygreen"
+              className="w-full p-2 rounded focus:outline-none text-secondary"
               required
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-pixypink text-sm font-bold mb-2">Email</label>
+            <label htmlFor="email" className="block text-primary text-sm font-bold mb-2">Email</label>
             <input
               type="email"
               id="email"
               name="user_email"
-              className="w-full p-2 rounded bg-pixycyan focus:outline-none text-pixygreen"
+              className="w-full p-2 rounded focus:outline-none text-secondary"
               required
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="message" className="block text-pixypink text-sm font-bold mb-2">Message</label>
+            <label htmlFor="message" className="block text-primary text-sm font-bold mb-2">Message</label>
             <textarea
               id="message"
               name="message"
-              className="w-full p-2 rounded bg-pixycyan focus:outline-none text-pixygreen"
+              className="w-full p-2 rounded  focus:outline-none text-secondary"
               required
             ></textarea>
           </div>
           <button
             type="submit"
-            className="w-full bg-pixypink text-white p-2 rounded hover:bg-pixycyan transition duration-300"
+            className="w-full bg-tertiary text-white p-2 rounded hover:bg-primary transition duration-300"
           >
             Envoyer
           </button>

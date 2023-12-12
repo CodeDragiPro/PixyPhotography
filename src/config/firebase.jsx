@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getAnalytics } from "firebase/analytics";
 
 export const firebaseConfig = {
     apiKey: import.meta.env.VITE_API_KEY,
@@ -39,6 +40,7 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+const analytics = getAnalytics(app);
 
 export const signInWithGoogle = async () => {
     try {

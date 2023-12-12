@@ -29,39 +29,41 @@ const Login = () => {
       })
       .catch((error) => {
         setError(error.message);
-        toast.error(`Erreur d'authentification : ${error.message}`, { position: toast.POSITION.BOTTOM_RIGHT });
+        toast.error(`Erreur d'authentification`, { position: toast.POSITION.BOTTOM_RIGHT });
       });
   };
   
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="max-w-md w-full bg-pixygreen border  p-8 rounded shadow-lg">
+    <div className="flex items-center justify-center min-h-screen p-4  flex-1">
+      <div className="max-w-xl w-full bg-primary  p-8 rounded shadow-lg">
         <h2 className="text-2xl font-bold  text-center text-white">Authentification</h2>
-        <p className="text-center text-pixypink py-2">Seul un administrateur peut s'authentifié</p>
+        <p className="text-center text-white py-2">Seul un administrateur peut s'authentifié</p>
         <form onSubmit={handleSignIn}>
           <input
             type="text"
             placeholder="Adresse e-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded p-2 mb-2 focus:outline-none bg-pixycyan text-pixygreen"
+            className="w-full rounded p-2 mb-2 focus:outline-none text-secondary"
+            required
           />
           <input
             type="password"
             placeholder="Mot de passe"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded p-2 mb-4 focus:outline-none bg-pixycyan text-pixygreen"
+            className="w-full rounded p-2 mb-4 focus:outline-none text-secondary"
+            required
           />
           <button
             type="submit" 
-            className="w-full bg-pixypink hover:bg-pixycyan text-white rounded p-2  text-xl"
+            className="w-full bg-tertiary hover:bg-secondary text-white rounded p-2  text-xl"
           >
             Se connecter
           </button>
         </form>
-        {error && <p className="text-red-500 mt-2">{error}</p>}
+       
         <ToastContainer />
       </div>
     </div>

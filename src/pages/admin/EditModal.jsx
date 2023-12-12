@@ -29,21 +29,21 @@ const EditModal = ({ portfolio, closeModal, updatePortfolio }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 p-4 backdrop-blur-sm bg-black/60 ">
-      <div className="bg-pixygreen p-6 rounded-lg max-w-md overflow-y-scroll max-h-screen">
-        <h2 className="text-2xl  mb-4 text-center">
+      <div className="bg-primary p-6 rounded-lg md:w-1/2 overflow-y-scroll max-h-screen">
+        <h2 className="text-2xl text-white mb-4 text-center">
           Modifier la Photo
         </h2>
         <div className="p-2">
           <label
             htmlFor="title"
-            className="text-lg text-pixypink"
+            className="text-lg text-white"
           >
             Titre :
           </label>
           <input
             type="text"
             id="title"
-            className="w-full p-2 rounded focus:outline-none bg-pixycyan text-pixygreen"
+            className="w-full p-2 rounded focus:outline-none  text-tertiary"
             value={updatedPortfolio.title}
             onChange={(e) =>
               setUpdatedPortfolio({
@@ -56,13 +56,13 @@ const EditModal = ({ portfolio, closeModal, updatePortfolio }) => {
         <div className="p-2">
           <label
             htmlFor="description"
-            className="text-lg text-pixypink"
+            className="text-lg text-white"
           >
             Description :
           </label>
           <textarea
             id="description"
-            className="w-full p-2 rounded focus:outline-none bg-pixycyan text-pixygreen"
+            className="w-full p-2 rounded focus:outline-none text-tertiary"
             value={updatedPortfolio.description}
             onChange={(e) =>
               setUpdatedPortfolio({
@@ -73,15 +73,15 @@ const EditModal = ({ portfolio, closeModal, updatePortfolio }) => {
           />
         </div>
         <div className="p-2">
-          <label className="text-lg text-pixypink">Date:</label>
+          <label className="text-lg text-white">Date:</label>
           <DatePicker
             selected={selectedDate}
             onChange={(date) => setSelectedDate(date)}
-            className="w-full p-2 rounded mx-2 focus:outline-none bg-pixycyan text-pixygreen"
+            className="w-full p-2 rounded mx-2 focus:outline-none  text-tertiary"
           />
         </div>
         <div className="p-2">
-          <label className="text-lg text-pixypink">
+          <label className="text-lg text-white">
             Catégories :
           </label>
           {updatedPortfolio.selectedCategories.map((category, index) => (
@@ -102,7 +102,7 @@ const EditModal = ({ portfolio, closeModal, updatePortfolio }) => {
                   });
                 }}
               />
-              <label htmlFor={category} className="text-lg text-codedragi-blue">
+              <label htmlFor={category} className="text-lg text-tertiary">
                 {category}
               </label>
             </div>
@@ -111,13 +111,13 @@ const EditModal = ({ portfolio, closeModal, updatePortfolio }) => {
         <div className="flex space-x-4 mt-2 p-2">
           <button
             onClick={handleUpdatePortfolio}
-            className="bg-pixycyan hover:bg-pixypink text-white p-2 rounded "
+            className="bg-secondary hover:bg-tertiary text-white p-2 rounded "
           >
             Enregistrer
           </button>
           <button
             onClick={closeModal}
-            className="bg-red-500 text-white p-2 rounded hover:bg-pixypink"
+            className="bg-tertiary text-white p-2 rounded hover:bg-secondary"
           >
             Annuler
           </button>
